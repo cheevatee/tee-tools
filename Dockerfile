@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi:latest
 
 RUN yum --disableplugin=subscription-manager -y module enable php:7.3 \
-  && yum --disableplugin=subscription-manager -y install httpd php net-tools nmap-ncat iproute bind-utils openldap-clients \
+  && yum --disableplugin=subscription-manager -y install httpd php net-tools nmap-ncat iproute bind-utils openldap-clients hostname \
   && yum --disableplugin=subscription-manager clean all
 
 ADD index.php /var/www/html
