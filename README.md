@@ -4,7 +4,7 @@ Manual build image (Manual deploy)
 
 ~~~~
 # git clone https://github.com/cheevatee/tee-tools.git
-# podman build -t rhel-test .
+# podman build -t tee-tools .
 ~~~~
 
 Use S2I (Auto deploy)
