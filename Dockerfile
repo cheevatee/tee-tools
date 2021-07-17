@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.1
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
 RUN yum --disableplugin=subscription-manager -y module enable php:7.3 \
   && yum --disableplugin=subscription-manager -y install httpd php net-tools nmap-ncat iproute bind-utils openldap-clients \
