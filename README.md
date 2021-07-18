@@ -10,5 +10,5 @@ Manual build image (Manual deploy)
 Use S2I (Auto deploy)
 
 ~~~~
-# oc new-app --name <name_of_pod> https://github.com/cheevatee/tee-tools/
+# oc new-app --name <name_of_pod> https://github.com/cheevatee/tee-tools.git
 ~~~~
