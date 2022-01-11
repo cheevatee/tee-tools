@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: red-mesh-web-gw
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - 'red-mesh-web.apps.<cluster-id>.<base-domain>'
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: red-mesh-web-vs
+spec:
+  hosts:
+  - 'red-mesh-web.apps.<cluster-id>.<base-domain>'
+  gateways:
+  - red-mesh-web-gw
+  http:
+  - route:
+    - destination:
+        host: red-mesh-web-1
+        subset: v1
+      weight: 50
+    - destination:
+        host: red-mesh-web-2
+        subset: v2
+      weight: 25
+    - destination:
+        host: red-mesh-web-3
+        subset: v3
+      weight: 25
