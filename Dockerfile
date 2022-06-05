@@ -6,8 +6,10 @@ RUN yum --disableplugin=subscription-manager -y module enable php:8.0 \
 #  && yum --disableplugin=subscription-manager -y install siege \
   && yum --disableplugin=subscription-manager clean all
 
+#RUN yum -y module enable mysql:8.0 && \
 RUN yum -y module enable mysql:8.0 && \
-    INSTALL_PKGS="policycoreutils rsync tar gettext hostname bind-utils groff-base mysql-server" && \
+#    INSTALL_PKGS="policycoreutils rsync tar gettext hostname bind-utils groff-base mysql-server" && \
+    INSTALL_PKGS="mysql" && \
     yum --disableplugin=subscription-manager install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*' && \
