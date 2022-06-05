@@ -6,13 +6,16 @@ RUN yum --disableplugin=subscription-manager -y module enable php:8.0 \
 #  && yum --disableplugin=subscription-manager -y install siege \
   && yum --disableplugin=subscription-manager clean all
 
-RUN yum -y module enable mysql:8.0 && \
-    INSTALL_PKGS="policycoreutils rsync tar gettext hostname bind-utils groff-base mysql-server" && \
-    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum -y clean all --enablerepo='*' && \
-    mkdir -p /var/lib/mysql/data && chown -R mysql.0 /var/lib/mysql && \
-    test "$(id mysql)" = "uid=27(mysql) gid=27(mysql) groups=27(mysql)"
+
+# mysql support only manual build via podman build
+
+#RUN yum -y module enable mysql:8.0 && \
+#    INSTALL_PKGS="policycoreutils rsync tar gettext hostname bind-utils groff-base mysql-server" && \
+#    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+#    rpm -V $INSTALL_PKGS && \
+#    yum -y clean all --enablerepo='*' && \
+#    mkdir -p /var/lib/mysql/data && chown -R mysql.0 /var/lib/mysql && \
+#    test "$(id mysql)" = "uid=27(mysql) gid=27(mysql) groups=27(mysql)"
 
 ADD php-info.php index.php database.php query.php form.php insert.php update.php delete.php /var/www/html
 
