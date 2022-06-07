@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: tee-tools
+  name: tee-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  path: /
+  to:
+    kind: Service
+    name: tee-tools
+    weight: 100
+  wildcardPolicy: None
+status: {}
