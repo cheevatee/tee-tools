@@ -1,6 +1,0 @@
-resources:
-- sc.yaml
-- pvc.yaml
-- deploymentconfig.yaml
-- service.yaml
-#- pvc.yaml
