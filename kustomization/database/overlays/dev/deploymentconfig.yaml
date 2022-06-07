@@ -1,0 +1,18 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: testdb
+spec:
+  template:
+    spec:
+      containers:
+      - name: testdb
+        env:
+        - name: MYSQL_AIO
+          value: "0"
+        - name: MYSQL_DATABASE
+          value: testdb
+        - name: MYSQL_PASSWORD
+          value: redhat
+        - name: MYSQL_USER
+          value: test

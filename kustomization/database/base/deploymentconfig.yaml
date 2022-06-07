@@ -1,0 +1,67 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: testdb
+  name: testdb
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentconfig: testdb
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deploymentconfig: testdb
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_AIO
+          value: "0"
+        - name: MYSQL_DATABASE
+          value: testdb
+        - name: MYSQL_PASSWORD
+          value: redhat
+        - name: MYSQL_USER
+          value: test
+        image: registry.redhat.io/rhel8/mysql-80@sha256:accf15359115a84e72942e97a77095bc3af8fcba5056f70a56473a7aac7fbcb0
+        imagePullPolicy: Always
+        name: testdb
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: volume-mdbbm
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: volume-mdbbm
+        persistentVolumeClaim:
+          claimName: testdb-data
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - testdb
+      from:
+        kind: ImageStreamTag
+        name: testdb:latest
+        namespace: tee
+      lastTriggeredImage: registry.redhat.io/rhel8/mysql-80@sha256:accf15359115a84e72942e97a77095bc3af8fcba5056f70a56473a7aac7fbcb0
+    type: ImageChange
+status: {}

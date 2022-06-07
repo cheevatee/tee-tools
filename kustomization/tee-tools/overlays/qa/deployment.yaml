@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tee-tools
+spec:
+  template:
+    spec:
+      containers:
+      - name: tee-tools
+        env:
+        - name: OPENSHIFT_MYSQL_DB_HOST
+          value: testdb.tee.svc.cluster.local
+#        - name: OPENSHIFT_MYSQL_DB_NAME
+#          value: <db_name>
+#        - name: OPENSHIFT_MYSQL_DB_PORT
+#          value: ""
+#        - name: OPENSHIFT_MYSQL_DB_USERNAME
+#          value: <db_user>
+#        - name: OPENSHIFT_MYSQL_DB_PASSWORD
+#          value: <db_pass_>
