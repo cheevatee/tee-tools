@@ -29,7 +29,7 @@ spec:
       containers:
       - env:
         - name: OPENSHIFT_MYSQL_DB_HOST
-          value: testdb.tee.svc.cluster.local
+          value: testdb.tee-tools-database.svc.cluster.local
         envFrom:
         - configMapRef:
             name: tee-tools-configmap
