@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: initial-db
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  template:
+    spec:
+      containers:
+        - name: mysql-client
+          env:
+            - name: MYSQL_HOST
+              value: testdb
+            - name: MYSQL_DATABASE
+              value: testdb
+            - name: MYSQL_PASSWORD
+              value: redhat
+            - name: MYSQL_USER
+              value: test
+          image: registry.redhat.io/rhel8/mysql-80:latest
+          imagePullPolicy: Always
+          command: ["/bin/sh", "/tmp/initial-database.sh"]
+          volumeMounts:
+          - mountPath: /tmp/initial-database.sh
+            name: testdb-configmap
+            subPath: initial-database.sh
+      volumes:
+      - configMap:
+          defaultMode: 493
+          items:
+          - key: initial-database.sh
+            path: initial-database.sh
+          name: testdb-configmap
+        name: testdb-configmap
+      restartPolicy: Never
+  backoffLimit: 1
