@@ -10,7 +10,7 @@ spec:
   resources:
     requests:
       storage: 5G
-  storageClassName: gp2
+  storageClassName: gp2-data
   volumeMode: Filesystem
 status: {}
 
