@@ -4,6 +4,8 @@ metadata:
   labels:
     app: tee-tools
   name: tee-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   progressDeadlineSeconds: 600
   replicas: 1

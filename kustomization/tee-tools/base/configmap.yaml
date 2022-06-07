@@ -5,3 +5,5 @@ data:
 kind: ConfigMap
 metadata:
   name: tee-tools-configmap
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
