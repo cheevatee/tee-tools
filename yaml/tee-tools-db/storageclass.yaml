@@ -2,7 +2,7 @@ allowVolumeExpansion: true
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: gp2-data
+  name: gp2-data-db
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 parameters:
