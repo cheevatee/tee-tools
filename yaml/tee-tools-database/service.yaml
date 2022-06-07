@@ -13,7 +13,7 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    deploymentconfig: testdb
+    deployment: testdb
   sessionAffinity: None
   type: ClusterIP
 status: {}
@@ -34,7 +34,7 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    deploymentconfig: testdb
+    deployment: testdb
   sessionAffinity: None
   type: LoadBalancer
 status: {}
