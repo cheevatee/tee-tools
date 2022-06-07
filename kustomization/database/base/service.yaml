@@ -4,6 +4,8 @@ metadata:
   labels:
     app: testdb
   name: testdb
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   ports:
   - name: 3306-tcp
