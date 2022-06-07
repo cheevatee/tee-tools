@@ -51,5 +51,4 @@ spec:
       - name: volume-mdbbm
         persistentVolumeClaim:
           claimName: testdb-data
-  test: false
 status: {}
