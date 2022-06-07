@@ -5,7 +5,7 @@ metadata:
     app: testdb
   name: testdb
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   replicas: 1
   revisionHistoryLimit: 10

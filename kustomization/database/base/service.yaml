@@ -5,7 +5,7 @@ metadata:
     app: testdb
   name: testdb
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   ports:
   - name: 3306-tcp
@@ -25,6 +25,8 @@ metadata:
   labels:
     app: testdb
   name: testdb-lb-service
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   ports:
   - nodePort: 30231
