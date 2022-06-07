@@ -30,7 +30,7 @@ spec:
           value: redhat
         - name: MYSQL_USER
           value: test
-        image: registry.redhat.io/rhel8/mysql-80@sha256:accf15359115a84e72942e97a77095bc3af8fcba5056f70a56473a7aac7fbcb0
+        image: registry.redhat.io/rhel8/mysql-80:latest
         imagePullPolicy: Always
         name: testdb
         ports:
@@ -52,16 +52,4 @@ spec:
         persistentVolumeClaim:
           claimName: testdb-data
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - testdb
-      from:
-        kind: ImageStreamTag
-        name: testdb:latest
-        namespace: tee
-      lastTriggeredImage: registry.redhat.io/rhel8/mysql-80@sha256:accf15359115a84e72942e97a77095bc3af8fcba5056f70a56473a7aac7fbcb0
-    type: ImageChange
 status: {}
