@@ -1,0 +1,19 @@
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    openshift.io/sa.scc.mcs: s0:c29,c19
+    openshift.io/sa.scc.supplemental-groups: 1000850000/10000
+    openshift.io/sa.scc.uid-range: 1000850000/10000
+  creationTimestamp: "2022-06-07T16:51:09Z"
+  labels:
+    kubernetes.io/metadata.name: tee-tools-app
+  name: tee-tools-app
+  resourceVersion: "3142768"
+  uid: e598cb70-00d3-4ca9-bb00-14dcb692eb90
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

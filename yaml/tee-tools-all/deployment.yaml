@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tee-tools
+  name: tee-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      deployment: tee-tools
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deployment: tee-tools
+    spec:
+      containers:
+      - env:
+        - name: OPENSHIFT_MYSQL_DB_HOST
+          value: testdb.tee-tools-all.svc.cluster.local
+        envFrom:
+        - configMapRef:
+            name: tee-tools-configmap
+        - secretRef:
+            name: tee-tools-secret
+        image: quay.io/crubsris/tee-tools:latest
+        imagePullPolicy: IfNotPresent
+        name: tee-tools
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    app: testdb
+  name: testdb
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      deployment: testdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        deployment: testdb
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_AIO
+          value: "0"
+        - name: MYSQL_DATABASE
+          value: testdb
+        - name: MYSQL_PASSWORD
+          value: redhat
+        - name: MYSQL_USER
+          value: test
+        image: registry.redhat.io/rhel8/mysql-80:latest
+        imagePullPolicy: IfNotPresent
+        name: testdb
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: volume-tkq7s
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: volume-tkq7s
+        persistentVolumeClaim:
+          claimName: testdb-data
+status: {}
+
