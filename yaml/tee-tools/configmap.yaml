@@ -1,9 +1,0 @@
-apiVersion: v1
-data:
-  OPENSHIFT_MYSQL_DB_NAME: testdb
-  OPENSHIFT_MYSQL_DB_PORT: "3306"
-kind: ConfigMap
-metadata:
-  name: tee-tools-configmap
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
