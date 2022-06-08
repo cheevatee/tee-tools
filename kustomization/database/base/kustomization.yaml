@@ -3,6 +3,6 @@ resources:
 - namespace.yaml
 - configmap.yaml
 - pvc.yaml
-- deploymentconfig.yaml
+- deployment.yaml
 #- service.yaml
 #- job.yaml
