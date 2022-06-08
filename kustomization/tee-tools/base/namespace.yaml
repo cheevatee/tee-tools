@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: tee-tools
+  name: tee-tools-app
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "-1"
 spec: {}
 status: {}

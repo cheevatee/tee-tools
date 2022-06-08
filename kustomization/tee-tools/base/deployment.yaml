@@ -5,7 +5,7 @@ metadata:
     app: tee-tools
   name: tee-tools
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -29,7 +29,7 @@ spec:
       containers:
       - env:
         - name: OPENSHIFT_MYSQL_DB_HOST
-          value: testdb.tee.svc.cluster.local
+          value: testdb.tee-tools-db.svc.cluster.local
         envFrom:
         - configMapRef:
             name: tee-tools-configmap
