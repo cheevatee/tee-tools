@@ -5,4 +5,4 @@ resources:
 - pvc.yaml
 - deployment.yaml
 - service.yaml
-#- job.yaml
+- job.yaml
