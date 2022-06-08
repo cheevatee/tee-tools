@@ -5,7 +5,7 @@ metadata:
     app: testdb
   name: testdb
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   ports:
   - name: 3306-tcp
@@ -13,7 +13,7 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    deploymentconfig: testdb
+    deployment: testdb
   sessionAffinity: None
   type: ClusterIP
 status: {}
@@ -26,7 +26,7 @@ metadata:
     app: testdb
   name: testdb-lb-service
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   ports:
   - nodePort: 30231
@@ -34,7 +34,7 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    deploymentconfig: testdb
+    deployment: testdb
   sessionAffinity: None
   type: LoadBalancer
 status: {}

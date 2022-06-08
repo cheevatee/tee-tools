@@ -3,14 +3,14 @@ kind: PersistentVolumeClaim
 metadata:
   name: testdb-data
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: 5G
-  storageClassName: gp2
+  storageClassName: gp2-data-db
   volumeMode: Filesystem
 status: {}
 

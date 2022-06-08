@@ -1,6 +1,8 @@
 resources:
-- sc.yaml
+- storageclass.yaml
+- namespace.yaml
+- configmap.yaml
 - pvc.yaml
-- deploymentconfig.yaml
-- service.yaml
-#- pvc.yaml
+#- deploymentconfig.yaml
+#- service.yaml
+#- job.yaml
