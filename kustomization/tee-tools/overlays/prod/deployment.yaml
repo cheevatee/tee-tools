@@ -9,7 +9,7 @@ spec:
       - name: tee-tools
         env:
         - name: OPENSHIFT_MYSQL_DB_HOST
-          value: testdb.tee.svc.cluster.local
+          value: testdb.tee-tools-db.svc.cluster.local
 #        - name: OPENSHIFT_MYSQL_DB_NAME
 #          value: <db_name>
 #        - name: OPENSHIFT_MYSQL_DB_PORT
