@@ -9,7 +9,7 @@ pipeline {
       OPENSHIFT_REGISTRY_ROUTE = "default-route-openshift-image-registry.apps.cluster-x4zhg.x4zhg.sandbox745.opentlc.com"
       KUBESEAL_DOWNLOAD_URL = "https://github.com/bitnami-labs/sealed-secrets/releases/download"
       KUBESEAL_VERSION = "0.18.2"
-            EMAIL_RECIPIENT = "ocpadmin@helper01.ocp4-poc.mobifone.vn"
+            EMAIL_RECIPIENT = "ocpadmin@helper01.example.com"
 }
   stages {
     stage ("Prompt for input Secret") {
